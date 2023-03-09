@@ -140,7 +140,7 @@ pointer-events: auto;
 <section class="page-header">
 <h1 class="title toc-ignore project-name">RENR 364 Group Project Data
 Analysis</h1>
-<h3 class="subtitle project-tagline">Yo</h3>
+<h3 class="subtitle project-tagline">Version 1-1</h3>
 <h4 class="date project-date">2023-03-09</h4>
 </section>
 
@@ -156,17 +156,35 @@ for Replicates</a></li>
 <li><a href="#coniferous-vs-deciduous" id="toc-coniferous-vs-deciduous">Coniferous vs Deciduous</a>
 <ul>
 <li><a href="#means-and-error" id="toc-means-and-error">Means and
-Error</a></li>
+Error</a>
+<ul>
+<li><a href="#plot" id="toc-plot">Plot</a></li>
+<li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen">Test for
+homogeneity of variance w/ Fligner Killeen</a></li>
+<li><a href="#test-for-normality-with-shapiro-wilk" id="toc-test-for-normality-with-shapiro-wilk">Test for normality with
+Shapiro-Wilk</a></li>
+<li><a href="#t-test" id="toc-t-test">T-test</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#urban-vs-rural" id="toc-urban-vs-rural">Urban vs Rural</a>
 <ul>
 <li><a href="#means-and-error-1" id="toc-means-and-error-1">Means and
-Error</a></li>
+Error</a>
+<ul>
+<li><a href="#plot-1" id="toc-plot-1">Plot</a></li>
+<li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-1" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-1">Test for
+homogeneity of variance w/ Fligner Killeen</a></li>
+<li><a href="#test-for-normality-with-shapiro-wilk-1" id="toc-test-for-normality-with-shapiro-wilk-1">Test for normality with
+Shapiro-Wilk</a></li>
+<li><a href="#t-test-1" id="toc-t-test-1">T-test</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#x2-bar-graph--both-predictors" id="toc-x2-bar-graph--both-predictors">2x2 Bar Graph -Both
 Predictors</a>
 <ul>
 <li><a href="#plot-2" id="toc-plot-2">Plot</a></li>
+<li><a href="#same-thing-but-reverse-predictors" id="toc-same-thing-but-reverse-predictors">Same thing but Reverse
+Predictors</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#questions" id="toc-questions">Questions</a>
@@ -176,14 +194,11 @@ Replicates</a></li>
 <li><a href="#standard-error-on-bar-graphs" id="toc-standard-error-on-bar-graphs">Standard Error on Bar
 Graphs</a></li>
 <li><a href="#rarefied-species-richness" id="toc-rarefied-species-richness">Rarefied Species Richness</a></li>
-<li><a href="#normality-of-habitats" id="toc-normality-of-habitats">Normality of Habitats</a></li>
 </ul></li>
 <li><a href="#notes" id="toc-notes">Notes</a>
 <ul>
 <li><a href="#bohemian-waxwings" id="toc-bohemian-waxwings">Bohemian
 Waxwings</a></li>
-<li><a href="#normality-of-condec-subsets" id="toc-normality-of-condec-subsets">Normality of Con/Dec
-Subsets</a></li>
 </ul></li>
 </ul>
 </div>
@@ -280,11 +295,7 @@ Subsets</a></li>
 ## 
 ## data:  bird.abun.reps$rep.abun by bird.abun.reps$habitat
 ## Fligner-Killeen:med chi-squared = 2.4794, df = 1, p-value = 0.1153</code></pre>
-<p>Fligner-Killeen test of homogeneity of variances</p>
-<p>data: bird.abun.reps<span class="math inline">\(rep.abun by
-bird.abun.reps\)</span>habitat Fligner-Killeen:med chi-squared = 2.4794,
-df = 1, p-value = 0.1153</p>
-<p><em>Variances are homogenious</em></p>
+<p><strong>Variances are homogeneous</strong></p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk" class="section level4">
 <h4>Test for normality with Shapiro-Wilk</h4>
@@ -310,7 +321,7 @@ df = 1, p-value = 0.1153</p>
 <p>data: bird.rep.con$rep.abun W = 0.91994, p-value = 0.505</p>
 <pre><code>Shapiro-Wilk normality test</code></pre>
 <p>data: bird.rep.dec$rep.abun W = 0.87157, p-value = 0.2325</p>
-<p><em>Abundances are normally distributed</em></p>
+<p><strong>Abundances are normally distributed</strong></p>
 </div>
 <div id="t-test" class="section level4">
 <h4>T-test</h4>
@@ -327,9 +338,9 @@ df = 1, p-value = 0.1153</p>
 ## sample estimates:
 ## mean in group C mean in group D 
 ##       12.666667        9.333333</code></pre>
-<p><em>Variances are homogenous</em> <em>Abundances are normally
-distributed</em> <em>p=0.1358 &gt; 0.05. Difference is not
-significant</em></p>
+<p><strong>Variances are homogeneous</strong> <strong>Abundances are
+normally distributed</strong> <strong>p=0.1358 &gt; 0.05. Difference is
+not significant</strong></p>
 </div>
 </div>
 </div>
@@ -372,7 +383,7 @@ significant</em></p>
 ## 
 ## data:  bird.abun.reps$rep.abun by bird.abun.reps$urban
 ## Fligner-Killeen:med chi-squared = 0.043693, df = 1, p-value = 0.8344</code></pre>
-<p><em>Variances are homogenious</em></p>
+<p><strong>Variances are homogeneous</strong></p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk-1" class="section level4">
 <h4>Test for normality with Shapiro-Wilk</h4>
@@ -394,7 +405,7 @@ significant</em></p>
 ## 
 ## data:  bird.urban.low$rep.abun
 ## W = 0.91335, p-value = 0.4588</code></pre>
-<p><em>both are normally distributed</em></p>
+<p><strong>Abundances are normally distributed</strong></p>
 </div>
 <div id="t-test-1" class="section level4">
 <h4>T-test</h4>
@@ -410,9 +421,9 @@ significant</em></p>
 ## sample estimates:
 ## mean in group high  mean in group low 
 ##          12.833333           9.166667</code></pre>
-<p><em>Variances are homogenous</em> <em>Abundances are normally
-distributed</em> <em>p=0.09624 &gt; 0.05. Difference is not
-significant</em></p>
+<p><strong>Variances are homogenous</strong> <strong>Abundances are
+normally distributed</strong> <strong>p=0.09624 &gt; 0.05. Difference is
+not significant</strong></p>
 </div>
 </div>
 </div>
@@ -493,8 +504,9 @@ interpretation of possible interaction effect</p>
 <span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
 <span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">3</span>,<span class="dv">15</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Rural&quot;</span>,<span class="st">&quot;Urban&quot;</span>), <span class="at">fill=</span>pretty)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
-<div id="same-thing-but-reverse-predictors" class="section level4">
-<h4>Same thing but Reverse Predictors</h4>
+</div>
+<div id="same-thing-but-reverse-predictors" class="section level3">
+<h3>Same thing but Reverse Predictors</h3>
 <p>Color = habitat, urban = x-axis</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 7
@@ -549,7 +561,6 @@ interpretation of possible interaction effect</p>
 </div>
 </div>
 </div>
-</div>
 <div id="questions" class="section level1">
 <h1>Questions</h1>
 <div id="temporal-replicates" class="section level2">
@@ -571,10 +582,6 @@ sample”?</p>
 experiment?</li>
 </ul>
 </div>
-<div id="normality-of-habitats" class="section level2">
-<h2>Normality of Habitats</h2>
-<p>Shapiro-Wilks non-normal -&gt; valid at n=6?</p>
-</div>
 </div>
 <div id="notes" class="section level1">
 <h1>Notes</h1>
@@ -583,11 +590,6 @@ experiment?</li>
 <p>Based off an average flock size of 50 and rounding up to nearest 50.
 Bohemian Scaled count = CEILING(Bohemian/50,1)</p>
 <p><a href="https://www.allaboutbirds.org/guide/Bohemian_Waxwing/lifehistory#" class="uri">https://www.allaboutbirds.org/guide/Bohemian_Waxwing/lifehistory#</a></p>
-</div>
-<div id="normality-of-condec-subsets" class="section level2">
-<h2>Normality of Con/Dec Subsets</h2>
-<p><em>Abundances are not normally distributed, normality is
-violated</em></p>
 </div>
 </div>
 </section>
