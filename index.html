@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-03-09" />
+<meta name="date" content="2023-03-11" />
 
 <title>RENR 364 Group Project Data Analysis</title>
 
@@ -192,7 +192,10 @@ Predictors</a></li>
 <li><a href="#habitat-1" id="toc-habitat-1">Habitat</a>
 <ul>
 <li><a href="#mean-rarefied-richness-and-error" id="toc-mean-rarefied-richness-and-error">Mean Rarefied Richness and
-Error</a></li>
+Error</a>
+<ul>
+<li><a href="#plot-3" id="toc-plot-3">Plot</a></li>
+</ul></li>
 <li><a href="#statistics" id="toc-statistics">Statistics</a>
 <ul>
 <li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-2" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-2">Test for
@@ -206,7 +209,10 @@ Shapiro-Wilk</a></li>
 vs. Urban</a>
 <ul>
 <li><a href="#mean-rarefied-richness-and-error-1" id="toc-mean-rarefied-richness-and-error-1">Mean Rarefied Richness and
-Error</a></li>
+Error</a>
+<ul>
+<li><a href="#plot-4" id="toc-plot-4">Plot</a></li>
+</ul></li>
 <li><a href="#statistics-1" id="toc-statistics-1">Statistics</a>
 <ul>
 <li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-3" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-3">Test for
@@ -259,12 +265,12 @@ Waxwings</a></li>
 <div id="create-abundance-table-for-replicates" class="section level2">
 <h2>Create Abundance Table for Replicates</h2>
 <p>Sum Abundances by Replicate</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bird.abun.reps <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>replicates.abun <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(replicate,urban,habitat) <span class="sc">%&gt;%</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">rep.abun=</span><span class="fu">sum</span>(abundance))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;replicate&#39;, &#39;urban&#39;. You can override
 ## using the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bird.abun.reps</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>replicates.abun</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ## # Groups:   replicate, urban [12]
 ##    replicate urban habitat rep.abun
@@ -320,20 +326,20 @@ Waxwings</a></li>
 </div>
 <div id="test-for-homogeneity-of-variance-w-fligner-killeen" class="section level5">
 <h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>habitat)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.abun<span class="sc">$</span>rep.abun<span class="sc">~</span>replicates.abun<span class="sc">$</span>habitat)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
-## data:  bird.abun.reps$rep.abun by bird.abun.reps$habitat
+## data:  replicates.abun$rep.abun by replicates.abun$habitat
 ## Fligner-Killeen:med chi-squared = 2.4794, df = 1, p-value = 0.1153</code></pre>
 <p><strong>Variances are homogeneous</strong></p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk" class="section level5">
 <h5>Test for normality with Shapiro-Wilk</h5>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create coniferous and deciduous datasets</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bird.rep.con <span class="ot">&lt;-</span>bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bird.rep.con <span class="ot">&lt;-</span>replicates.abun <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;C&quot;</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>bird.rep.dec <span class="ot">&lt;-</span>bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>bird.rep.dec <span class="ot">&lt;-</span>replicates.abun <span class="sc">%&gt;%</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;D&quot;</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test for normality</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.rep.con<span class="sc">$</span>rep.abun)</span></code></pre></div>
@@ -353,11 +359,11 @@ Waxwings</a></li>
 <div id="t-test" class="section level5">
 <h5>T-test</h5>
 <p>Running the t-test</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.abun<span class="sc">$</span>rep.abun<span class="sc">~</span>replicates.abun<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
-## data:  bird.abun.reps$rep.abun by bird.abun.reps$habitat
+## data:  replicates.abun$rep.abun by replicates.abun$habitat
 ## t = 1.6222, df = 10, p-value = 0.1358
 ## alternative hypothesis: true difference in means between group C and group D is not equal to 0
 ## 95 percent confidence interval:
@@ -375,7 +381,7 @@ not significant</strong></p>
 <h3>Urban vs Rural</h3>
 <div id="mean-abundance-and-error-1" class="section level4">
 <h4>Mean Abundance and Error</h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>urban.stat <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>urban.stat <span class="ot">&lt;-</span> replicates.abun <span class="sc">%&gt;%</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.abun=</span><span class="fu">mean</span>(rep.abun),</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(),</span>
@@ -404,20 +410,20 @@ not significant</strong></p>
 </div>
 <div id="test-for-homogeneity-of-variance-w-fligner-killeen-1" class="section level5">
 <h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.abun<span class="sc">$</span>rep.abun<span class="sc">~</span>replicates.abun<span class="sc">$</span>urban)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
-## data:  bird.abun.reps$rep.abun by bird.abun.reps$urban
+## data:  replicates.abun$rep.abun by replicates.abun$urban
 ## Fligner-Killeen:med chi-squared = 0.043693, df = 1, p-value = 0.8344</code></pre>
 <p><strong>Variances are homogeneous</strong></p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk-1" class="section level5">
 <h5>Test for normality with Shapiro-Wilk</h5>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create rural and urban datasets</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bird.urban.high <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bird.urban.high <span class="ot">&lt;-</span> replicates.abun <span class="sc">%&gt;%</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>bird.urban.low <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>bird.urban.low <span class="ot">&lt;-</span> replicates.abun <span class="sc">%&gt;%</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test for normality</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.urban.high<span class="sc">$</span>rep.abun)</span></code></pre></div>
@@ -436,11 +442,11 @@ not significant</strong></p>
 </div>
 <div id="t-test-1" class="section level5">
 <h5>T-test</h5>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.abun<span class="sc">$</span>rep.abun<span class="sc">~</span>replicates.abun<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
-## data:  bird.abun.reps$rep.abun by bird.abun.reps$urban
+## data:  replicates.abun$rep.abun by replicates.abun$urban
 ## t = 1.8359, df = 10, p-value = 0.09624
 ## alternative hypothesis: true difference in means between group high and group low is not equal to 0
 ## 95 percent confidence interval:
@@ -707,23 +713,38 @@ our resampling number for rarefaction.</p>
 <h3>Habitat</h3>
 <div id="mean-rarefied-richness-and-error" class="section level4">
 <h4>Mean Rarefied Richness and Error</h4>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>rarefy.means.hab <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>rarefy.stat.hab <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat) <span class="sc">%&gt;%</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.rarefy=</span><span class="fu">mean</span>(rarefyhill0),</span>
 <span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(), <span class="at">sd=</span><span class="fu">sd</span>(rarefyhill0),</span>
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.means.hab)</span></code></pre></div>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.stat.hab)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   habitat   mean.rarefy count    sd    se
 ##   &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Conifer          2.71     6 1.09  0.445
 ## 2 Deciduous        2.55     6 0.761 0.311</code></pre>
+<div id="plot-3" class="section level5">
+<h5>Plot</h5>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>plot.rarefy.hab <span class="ot">&lt;-</span> <span class="fu">barplot</span>(rarefy.stat.hab<span class="sc">$</span>mean.rarefy <span class="sc">~</span> rarefy.stat.hab<span class="sc">$</span>habitat,</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">xlab =</span> <span class="st">&quot;Forest Type&quot;</span>,</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">cex.lab =</span> <span class="dv">1</span>,</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylab =</span> <span class="st">&quot;Mean Rarefied Species Richness +/- SE&quot;</span>,</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Conifer&quot;</span>,<span class="st">&quot;Deciduous&quot;</span>),</span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;aquamarine4&quot;</span>,<span class="st">&quot;thistle3&quot;</span>),</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">main=</span> <span class="st">&quot;Rarefied Species Richness by Forest Type&quot;</span>)</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(plot.rarefy.hab, rarefy.stat.hab<span class="sc">$</span>mean.rarefy <span class="sc">-</span> rarefy.stat.hab<span class="sc">$</span>se,</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>       plot.hab.mean, rarefy.stat.hab<span class="sc">$</span>mean.rarefy <span class="sc">+</span> rarefy.stat.hab<span class="sc">$</span>se,</span>
+<span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>,<span class="at">length=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
 </div>
 <div id="statistics" class="section level4">
 <h4>Statistics</h4>
 <div id="test-for-homogeneity-of-variance-w-fligner-killeen-2" class="section level5">
 <h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
@@ -733,17 +754,17 @@ our resampling number for rarefaction.</p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk-2" class="section level5">
 <h5>Test for normality with Shapiro-Wilk</h5>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>diversity.con <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Conifer&quot;</span>)</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>diversity.dec <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
-<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Deciduous&quot;</span>)</span>
-<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.con<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>diversity.con <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Conifer&quot;</span>)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>diversity.dec <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Deciduous&quot;</span>)</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.con<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  diversity.con$rarefyhill0
 ## W = 0.8681, p-value = 0.2187</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.dec<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.dec<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -753,7 +774,7 @@ our resampling number for rarefaction.</p>
 </div>
 <div id="t-test-2" class="section level5">
 <h5>T-test</h5>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -774,23 +795,37 @@ p=0.7726</strong>)</p>
 <h3>Rural vs. Urban</h3>
 <div id="mean-rarefied-richness-and-error-1" class="section level4">
 <h4>Mean Rarefied Richness and Error</h4>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>rarefy.means.urban <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.rarefy=</span><span class="fu">mean</span>(rarefyhill0),</span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(), <span class="at">sd=</span><span class="fu">sd</span>(rarefyhill0),</span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.means.urban)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>rarefy.stat.urban <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.rarefy=</span><span class="fu">mean</span>(rarefyhill0),</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(), <span class="at">sd=</span><span class="fu">sd</span>(rarefyhill0),</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.stat.urban)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   urban mean.rarefy count    sd    se
 ##   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 high         3.27     6 0.735 0.300
 ## 2 low          2.00     6 0.513 0.209</code></pre>
+<div id="plot-4" class="section level5">
+<h5>Plot</h5>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>plot.rarefy.urban <span class="ot">&lt;-</span> <span class="fu">barplot</span>(rarefy.stat.urban<span class="sc">$</span>mean.rarefy <span class="sc">~</span> rarefy.stat.urban<span class="sc">$</span>urban,</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">xlab =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylab =</span> <span class="st">&quot;Mean Rarefied Species Richness +/- SE&quot;</span>,</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>),</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Urban&quot;</span>,<span class="st">&quot;Rural&quot;</span>),</span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkslategray3&quot;</span>,<span class="st">&quot;darkseagreen3&quot;</span>),</span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">main=</span> <span class="st">&quot;Rarefied Species Richness by Urban Density&quot;</span>)</span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(plot.rarefy.urban, rarefy.stat.urban<span class="sc">$</span>mean.rarefy <span class="sc">-</span> rarefy.stat.urban<span class="sc">$</span>se,</span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>       plot.rarefy.urban, rarefy.stat.urban<span class="sc">$</span>mean.rarefy <span class="sc">+</span> rarefy.stat.urban<span class="sc">$</span>se,</span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>,<span class="at">length=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
 </div>
 <div id="statistics-1" class="section level4">
 <h4>Statistics</h4>
 <div id="test-for-homogeneity-of-variance-w-fligner-killeen-3" class="section level5">
 <h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity.ln<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity.ln<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
@@ -800,17 +835,17 @@ p=0.7726</strong>)</p>
 </div>
 <div id="test-for-normality-with-shapiro-wilk-3" class="section level5">
 <h5>Test for normality with Shapiro-Wilk</h5>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>diversity.high <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
-<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>diversity.low <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
-<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
-<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.high<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>diversity.high <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>diversity.low <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.high<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  diversity.high$rarefyhill0
 ## W = 0.86363, p-value = 0.202</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -820,7 +855,7 @@ p=0.7726</strong>)</p>
 </div>
 <div id="t-test-3" class="section level5">
 <h5>T-test</h5>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -835,9 +870,9 @@ p=0.7726</strong>)</p>
 <p><strong>Result is significant (t = 3.4919, df = 10, p-value &lt;
 0.001) but normality is violated</strong></p>
 <p>What is the skew and kurtosis?</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## [1] -1.399386</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
 <pre><code>## [1] 3.5638</code></pre>
 <p>This shows the reason that normality is violated. High skewness and
 kurtosis. Left skew does indicate we should be skeptical of the results
