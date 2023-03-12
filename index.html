@@ -140,8 +140,8 @@ pointer-events: auto;
 <section class="page-header">
 <h1 class="title toc-ignore project-name">RENR 364 Group Project Data
 Analysis</h1>
-<h3 class="subtitle project-tagline">Version 1-1</h3>
-<h4 class="date project-date">2023-03-09</h4>
+<h3 class="subtitle project-tagline">Version 2-1</h3>
+<h4 class="date project-date">2023-03-11</h4>
 </section>
 
 
@@ -153,10 +153,11 @@ Analysis</h1>
 <ul>
 <li><a href="#create-abundance-table-for-replicates" id="toc-create-abundance-table-for-replicates">Create Abundance Table
 for Replicates</a></li>
-<li><a href="#coniferous-vs-deciduous" id="toc-coniferous-vs-deciduous">Coniferous vs Deciduous</a>
+<li><a href="#abundance" id="toc-abundance">Abundance</a>
 <ul>
-<li><a href="#means-and-error" id="toc-means-and-error">Means and
-Error</a>
+<li><a href="#habitat" id="toc-habitat">Habitat</a>
+<ul>
+<li><a href="#mean-abundance-and-error" id="toc-mean-abundance-and-error">Mean Abundance and Error</a>
 <ul>
 <li><a href="#plot" id="toc-plot">Plot</a></li>
 <li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen">Test for
@@ -168,8 +169,7 @@ Shapiro-Wilk</a></li>
 </ul></li>
 <li><a href="#urban-vs-rural" id="toc-urban-vs-rural">Urban vs Rural</a>
 <ul>
-<li><a href="#means-and-error-1" id="toc-means-and-error-1">Means and
-Error</a>
+<li><a href="#mean-abundance-and-error-1" id="toc-mean-abundance-and-error-1">Mean Abundance and Error</a>
 <ul>
 <li><a href="#plot-1" id="toc-plot-1">Plot</a></li>
 <li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-1" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-1">Test for
@@ -179,21 +179,50 @@ Shapiro-Wilk</a></li>
 <li><a href="#t-test-1" id="toc-t-test-1">T-test</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#x2-bar-graph--both-predictors" id="toc-x2-bar-graph--both-predictors">2x2 Bar Graph -Both
-Predictors</a>
+<li><a href="#both-predictors---abundance---2x2-bar-graph" id="toc-both-predictors---abundance---2x2-bar-graph">Both Predictors -
+Abundance - 2x2 Bar Graph</a>
 <ul>
 <li><a href="#plot-2" id="toc-plot-2">Plot</a></li>
 <li><a href="#same-thing-but-reverse-predictors" id="toc-same-thing-but-reverse-predictors">Same thing but Reverse
 Predictors</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#rarefied-species-richness" id="toc-rarefied-species-richness">Rarefied Species Richness</a>
+<ul>
+<li><a href="#habitat-1" id="toc-habitat-1">Habitat</a>
+<ul>
+<li><a href="#mean-rarefied-richness-and-error" id="toc-mean-rarefied-richness-and-error">Mean Rarefied Richness and
+Error</a></li>
+<li><a href="#statistics" id="toc-statistics">Statistics</a>
+<ul>
+<li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-2" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-2">Test for
+homogeneity of variance w/ Fligner Killeen</a></li>
+<li><a href="#test-for-normality-with-shapiro-wilk-2" id="toc-test-for-normality-with-shapiro-wilk-2">Test for normality with
+Shapiro-Wilk</a></li>
+<li><a href="#t-test-2" id="toc-t-test-2">T-test</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#rural-vs.-urban" id="toc-rural-vs.-urban">Rural
+vs. Urban</a>
+<ul>
+<li><a href="#mean-rarefied-richness-and-error-1" id="toc-mean-rarefied-richness-and-error-1">Mean Rarefied Richness and
+Error</a></li>
+<li><a href="#statistics-1" id="toc-statistics-1">Statistics</a>
+<ul>
+<li><a href="#test-for-homogeneity-of-variance-w-fligner-killeen-3" id="toc-test-for-homogeneity-of-variance-w-fligner-killeen-3">Test for
+homogeneity of variance w/ Fligner Killeen</a></li>
+<li><a href="#test-for-normality-with-shapiro-wilk-3" id="toc-test-for-normality-with-shapiro-wilk-3">Test for normality with
+Shapiro-Wilk</a></li>
+<li><a href="#t-test-3" id="toc-t-test-3">T-test</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li><a href="#questions" id="toc-questions">Questions</a>
 <ul>
 <li><a href="#temporal-replicates" id="toc-temporal-replicates">Temporal
 Replicates</a></li>
-<li><a href="#standard-error-on-bar-graphs" id="toc-standard-error-on-bar-graphs">Standard Error on Bar
-Graphs</a></li>
-<li><a href="#rarefied-species-richness" id="toc-rarefied-species-richness">Rarefied Species Richness</a></li>
+<li><a href="#rarefied-species-richness-1" id="toc-rarefied-species-richness-1">Rarefied Species Richness</a></li>
 </ul></li>
 <li><a href="#notes" id="toc-notes">Notes</a>
 <ul>
@@ -253,10 +282,12 @@ Waxwings</a></li>
 ## 11 MCR2      high  D             18
 ## 12 MCR3      high  D              6</code></pre>
 </div>
-<div id="coniferous-vs-deciduous" class="section level2">
-<h2>Coniferous vs Deciduous</h2>
-<div id="means-and-error" class="section level3">
-<h3>Means and Error</h3>
+<div id="abundance" class="section level2">
+<h2>Abundance</h2>
+<div id="habitat" class="section level3">
+<h3>Habitat</h3>
+<div id="mean-abundance-and-error" class="section level4">
+<h4>Mean Abundance and Error</h4>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hab.stat <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat,replicate) <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total.abun=</span><span class="fu">sum</span>(abundance)) <span class="sc">%&gt;%</span></span>
@@ -272,8 +303,8 @@ Waxwings</a></li>
 ##   &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 C               12.7      6  1.63 0.667
 ## 2 D                9.33     6  4.76 1.94</code></pre>
-<div id="plot" class="section level4">
-<h4>Plot</h4>
+<div id="plot" class="section level5">
+<h5>Plot</h5>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot.hab.mean <span class="ot">&lt;-</span> <span class="fu">barplot</span>(hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">~</span> hab.stat<span class="sc">$</span>habitat,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">xlab =</span> <span class="st">&quot;Dominant Tree Type&quot;</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylab =</span> <span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
@@ -285,10 +316,10 @@ Waxwings</a></li>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       plot.hab.mean, hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">+</span> hab.stat<span class="sc">$</span>se,</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>,<span class="at">length=</span><span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- -->
-### Statistics</p>
+#### Statistics</p>
 </div>
-<div id="test-for-homogeneity-of-variance-w-fligner-killeen" class="section level4">
-<h4>Test for homogeneity of variance w/ Fligner Killeen</h4>
+<div id="test-for-homogeneity-of-variance-w-fligner-killeen" class="section level5">
+<h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>habitat)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
@@ -297,8 +328,8 @@ Waxwings</a></li>
 ## Fligner-Killeen:med chi-squared = 2.4794, df = 1, p-value = 0.1153</code></pre>
 <p><strong>Variances are homogeneous</strong></p>
 </div>
-<div id="test-for-normality-with-shapiro-wilk" class="section level4">
-<h4>Test for normality with Shapiro-Wilk</h4>
+<div id="test-for-normality-with-shapiro-wilk" class="section level5">
+<h5>Test for normality with Shapiro-Wilk</h5>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create coniferous and deciduous datasets</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bird.rep.con <span class="ot">&lt;-</span>bird.abun.reps <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;C&quot;</span>)</span>
@@ -317,16 +348,12 @@ Waxwings</a></li>
 ## 
 ## data:  bird.rep.dec$rep.abun
 ## W = 0.87157, p-value = 0.2325</code></pre>
-<p>Shapiro-Wilk normality test</p>
-<p>data: bird.rep.con$rep.abun W = 0.91994, p-value = 0.505</p>
-<pre><code>Shapiro-Wilk normality test</code></pre>
-<p>data: bird.rep.dec$rep.abun W = 0.87157, p-value = 0.2325</p>
 <p><strong>Abundances are normally distributed</strong></p>
 </div>
-<div id="t-test" class="section level4">
-<h4>T-test</h4>
+<div id="t-test" class="section level5">
+<h5>T-test</h5>
 <p>Running the t-test</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -344,40 +371,40 @@ not significant</strong></p>
 </div>
 </div>
 </div>
-<div id="urban-vs-rural" class="section level2">
-<h2>Urban vs Rural</h2>
-<div id="means-and-error-1" class="section level3">
-<h3>Means and Error</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>urban.stat <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.abun=</span><span class="fu">mean</span>(rep.abun),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd=</span><span class="fu">sd</span>(rep.abun),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urban.stat)</span></code></pre></div>
+<div id="urban-vs-rural" class="section level3">
+<h3>Urban vs Rural</h3>
+<div id="mean-abundance-and-error-1" class="section level4">
+<h4>Mean Abundance and Error</h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>urban.stat <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.abun=</span><span class="fu">mean</span>(rep.abun),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd=</span><span class="fu">sd</span>(rep.abun),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(urban.stat)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   urban mean.abun count    sd    se
 ##   &lt;chr&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 high      12.8      6  4.07  1.66
 ## 2 low        9.17     6  2.71  1.11</code></pre>
-<div id="plot-1" class="section level4">
-<h4>Plot</h4>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot.urban.mean <span class="ot">&lt;-</span> <span class="fu">barplot</span>(urban.stat<span class="sc">$</span>mean.abun <span class="sc">~</span> urban.stat<span class="sc">$</span>urban,</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylab =</span> <span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Urban&quot;</span>,<span class="st">&quot;Rural&quot;</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightcyan3&quot;</span>,<span class="st">&quot;palegoldenrod&quot;</span>),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">main=</span> <span class="st">&quot;Bird Abundance Rural vs. Urban Parks&quot;</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(plot.hab.mean, hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">-</span> hab.stat<span class="sc">$</span>se,</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>       plot.hab.mean, hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">+</span> hab.stat<span class="sc">$</span>se,</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>,<span class="at">length=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<div id="plot-1" class="section level5">
+<h5>Plot</h5>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot.urban.mean <span class="ot">&lt;-</span> <span class="fu">barplot</span>(urban.stat<span class="sc">$</span>mean.abun <span class="sc">~</span> urban.stat<span class="sc">$</span>urban,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylab =</span> <span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">&quot;Urban&quot;</span>,<span class="st">&quot;Rural&quot;</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightcyan3&quot;</span>,<span class="st">&quot;palegoldenrod&quot;</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">main=</span> <span class="st">&quot;Bird Abundance Rural vs. Urban Parks&quot;</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(plot.hab.mean, hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">-</span> hab.stat<span class="sc">$</span>se,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>       plot.hab.mean, hab.stat<span class="sc">$</span>mean.abun.hab <span class="sc">+</span> hab.stat<span class="sc">$</span>se,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>,<span class="at">length=</span><span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- -->
-### Statistics</p>
+#### Statistics</p>
 </div>
-<div id="test-for-homogeneity-of-variance-w-fligner-killeen-1" class="section level4">
-<h4>Test for homogeneity of variance w/ Fligner Killeen</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban)</span></code></pre></div>
+<div id="test-for-homogeneity-of-variance-w-fligner-killeen-1" class="section level5">
+<h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban)</span></code></pre></div>
 <pre><code>## 
 ##  Fligner-Killeen test of homogeneity of variances
 ## 
@@ -385,21 +412,21 @@ not significant</strong></p>
 ## Fligner-Killeen:med chi-squared = 0.043693, df = 1, p-value = 0.8344</code></pre>
 <p><strong>Variances are homogeneous</strong></p>
 </div>
-<div id="test-for-normality-with-shapiro-wilk-1" class="section level4">
-<h4>Test for normality with Shapiro-Wilk</h4>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create rural and urban datasets</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bird.urban.high <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>bird.urban.low <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test for normality</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.urban.high<span class="sc">$</span>rep.abun)</span></code></pre></div>
+<div id="test-for-normality-with-shapiro-wilk-1" class="section level5">
+<h5>Test for normality with Shapiro-Wilk</h5>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create rural and urban datasets</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bird.urban.high <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>bird.urban.low <span class="ot">&lt;-</span> bird.abun.reps <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test for normality</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.urban.high<span class="sc">$</span>rep.abun)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  bird.urban.high$rep.abun
 ## W = 0.96202, p-value = 0.8351</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.urban.low<span class="sc">$</span>rep.abun)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(bird.urban.low<span class="sc">$</span>rep.abun)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -407,9 +434,9 @@ not significant</strong></p>
 ## W = 0.91335, p-value = 0.4588</code></pre>
 <p><strong>Abundances are normally distributed</strong></p>
 </div>
-<div id="t-test-1" class="section level4">
-<h4>T-test</h4>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="t-test-1" class="section level5">
+<h5>T-test</h5>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(bird.abun.reps<span class="sc">$</span>rep.abun<span class="sc">~</span>bird.abun.reps<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -427,23 +454,23 @@ not significant</strong></p>
 </div>
 </div>
 </div>
-<div id="x2-bar-graph--both-predictors" class="section level2">
-<h2>2x2 Bar Graph -Both Predictors</h2>
+<div id="both-predictors---abundance---2x2-bar-graph" class="section level3">
+<h3>Both Predictors - Abundance - 2x2 Bar Graph</h3>
 <p>No statistics tests required for this - just graph / effect size and
 interpretation of possible interaction effect</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>factorial.stat <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat, urban, site, replicate) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total.site.abun=</span><span class="fu">sum</span>(abundance)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site,habitat,urban) <span class="sc">%&gt;%</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.site.abun=</span><span class="fu">mean</span>(total.site.abun),</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>(),</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd=</span><span class="fu">sd</span>(total.site.abun),</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>factorial.stat <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat, urban, site, replicate) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total.site.abun=</span><span class="fu">sum</span>(abundance)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site,habitat,urban) <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean.site.abun=</span><span class="fu">mean</span>(total.site.abun),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">count=</span><span class="fu">n</span>(),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd=</span><span class="fu">sd</span>(total.site.abun),</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;habitat&#39;, &#39;urban&#39;, &#39;site&#39;. You can
 ## override using the `.groups` argument.
 ## `summarise()` has grouped output by &#39;site&#39;, &#39;habitat&#39;. You can override using
 ## the `.groups` argument.</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 7
 ## # Groups:   site, habitat [4]
 ##   site  habitat urban mean.site.abun count    sd    se
@@ -452,9 +479,9 @@ interpretation of possible interaction effect</p>
 ## 2 LHP   D       low              7       3 2     1.15 
 ## 3 LS    C       high            14       3 1     0.577
 ## 4 MCR   D       high            11.7     3 6.03  3.48</code></pre>
-<div id="plot-2" class="section level3">
-<h3>Plot</h3>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
+<div id="plot-2" class="section level4">
+<h4>Plot</h4>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 7
 ## # Groups:   site, habitat [4]
 ##   site  habitat urban mean.site.abun count    sd    se
@@ -463,52 +490,52 @@ interpretation of possible interaction effect</p>
 ## 2 LHP   D       low              7       3 2     1.15 
 ## 3 LS    C       high            14       3 1     0.577
 ## 4 MCR   D       high            11.7     3 6.03  3.48</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>factorial.stat.box <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(habitat,urban, mean.site.abun) <span class="sc">%&gt;%</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>habitat, <span class="at">values_from=</span>mean.site.abun)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat.box)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>factorial.stat.box <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(habitat,urban, mean.site.abun) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>habitat, <span class="at">values_from=</span>mean.site.abun)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat.box)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   urban     C     D
 ##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 low    11.3   7  
 ## 2 high   14    11.7</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data matrix for graphing side-by-side</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>factorial.stat.box1 <span class="ot">&lt;-</span> factorial.stat.box <span class="sc">%&gt;%</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Coniferous=</span>C,<span class="at">Deciduous=</span>D)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>factor.stat.box.matrix <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(factorial.stat.box1[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># error matrix</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(urban,habitat,se) <span class="sc">%&gt;%</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>habitat, <span class="at">values_from=</span>se)</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>error1 <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(error[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(error1)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data matrix for graphing side-by-side</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>factorial.stat.box1 <span class="ot">&lt;-</span> factorial.stat.box <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Coniferous=</span>C,<span class="at">Deciduous=</span>D)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>factor.stat.box.matrix <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(factorial.stat.box1[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># error matrix</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>error <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(urban,habitat,se) <span class="sc">%&gt;%</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>habitat, <span class="at">values_from=</span>se)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>error1 <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(error[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(error1)</span></code></pre></div>
 <pre><code>##              C        D
 ## [1,] 0.3333333 1.154701
 ## [2,] 0.5773503 3.480102</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>pretty <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;lightgoldenrod1&quot;</span>,<span class="st">&quot;lightblue3&quot;</span>) <span class="co"># change colour scheme here</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>factorial.plot <span class="ot">&lt;-</span> <span class="fu">barplot</span>(factor.stat.box.matrix,</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">beside=</span><span class="cn">TRUE</span>,</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">17.5</span>),</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylab=</span><span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col=</span>pretty,</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">space=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">main=</span><span class="st">&quot;Effects of Urban Environment and Tree Type&quot;</span>)</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># error bars</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(factorial.plot,factor.stat.box.matrix<span class="sc">+</span>error1,factorial.plot,factor.stat.box.matrix<span class="sc">-</span>error1,<span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">length=</span><span class="fl">0.1</span>)</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">3</span>,<span class="dv">15</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Rural&quot;</span>,<span class="st">&quot;Urban&quot;</span>), <span class="at">fill=</span>pretty)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>pretty <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;lightgoldenrod1&quot;</span>,<span class="st">&quot;lightblue3&quot;</span>) <span class="co"># change colour scheme here</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>factorial.plot <span class="ot">&lt;-</span> <span class="fu">barplot</span>(factor.stat.box.matrix,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">beside=</span><span class="cn">TRUE</span>,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">17.5</span>),</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylab=</span><span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col=</span>pretty,</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">space=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">main=</span><span class="st">&quot;Effects of Urban Environment and Tree Type&quot;</span>)</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co"># error bars</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(factorial.plot,factor.stat.box.matrix<span class="sc">+</span>error1,factorial.plot,factor.stat.box.matrix<span class="sc">-</span>error1,<span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">length=</span><span class="fl">0.1</span>)</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="dv">3</span>,<span class="dv">15</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Rural&quot;</span>,<span class="st">&quot;Urban&quot;</span>), <span class="at">fill=</span>pretty)</span></code></pre></div>
 <p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
-<div id="same-thing-but-reverse-predictors" class="section level3">
-<h3>Same thing but Reverse Predictors</h3>
+<div id="same-thing-but-reverse-predictors" class="section level4">
+<h4>Same thing but Reverse Predictors</h4>
 <p>Color = habitat, urban = x-axis</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 7
 ## # Groups:   site, habitat [4]
 ##   site  habitat urban mean.site.abun count    sd    se
@@ -517,47 +544,306 @@ interpretation of possible interaction effect</p>
 ## 2 LHP   D       low              7       3 2     1.15 
 ## 3 LS    C       high            14       3 1     0.577
 ## 4 MCR   D       high            11.7     3 6.03  3.48</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>factorial.stat.box2 <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(habitat,urban, mean.site.abun) <span class="sc">%&gt;%</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>urban, <span class="at">values_from=</span>mean.site.abun)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat.box2)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>factorial.stat.box2 <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(habitat,urban, mean.site.abun) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>urban, <span class="at">values_from=</span>mean.site.abun)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(factorial.stat.box2)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   habitat   low  high
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 C        11.3  14  
 ## 2 D         7    11.7</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data matrix for graphing side-by-side</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>factorial.stat.box3 <span class="ot">&lt;-</span> factorial.stat.box2 <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Rural=</span>low,<span class="at">Urban=</span>high)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>factor.stat.box.matrix2 <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(factorial.stat.box3[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># error matrix</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>error1a <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(urban,habitat,se) <span class="sc">%&gt;%</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>urban, <span class="at">values_from=</span>se)</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>error1b <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(error1a[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(error1b)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data matrix for graphing side-by-side</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>factorial.stat.box3 <span class="ot">&lt;-</span> factorial.stat.box2 <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Rural=</span>low,<span class="at">Urban=</span>high)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>factor.stat.box.matrix2 <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(factorial.stat.box3[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># error matrix</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>error1a <span class="ot">&lt;-</span> factorial.stat <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>  ungroup <span class="sc">%&gt;%</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(urban,habitat,se) <span class="sc">%&gt;%</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>urban, <span class="at">values_from=</span>se)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>error1b <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(error1a[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(error1b)</span></code></pre></div>
 <pre><code>##            low      high
 ## [1,] 0.3333333 0.5773503
 ## [2,] 1.1547005 3.4801022</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>treecolors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;steelblue4&quot;</span>,<span class="st">&quot;turquoise3&quot;</span>) <span class="co"># change colour scheme here</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>factorial.plot2 <span class="ot">&lt;-</span> <span class="fu">barplot</span>(factor.stat.box.matrix2,</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">beside=</span><span class="cn">TRUE</span>,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylab=</span><span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col=</span>treecolors,</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">space=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">main=</span><span class="st">&quot;Effects of Urban Environment and Tree Type&quot;</span>)</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co"># error bars</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(factorial.plot2,factor.stat.box.matrix2<span class="sc">+</span>error1b,factorial.plot2,factor.stat.box.matrix2<span class="sc">-</span>error1b,<span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">length=</span><span class="fl">0.1</span>)</span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(.<span class="dv">5</span>,<span class="dv">18</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Coniferous&quot;</span>,<span class="st">&quot;Deciduous&quot;</span>), <span class="at">fill=</span>treecolors)</span></code></pre></div>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqAAAAHgCAMAAABNUi8GAAAAyVBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZpAAZrYAxc02ZIs6AAA6ADo6AGY6OgA6OmY6ZpA6ZrY6kLY6kNtmAABmADpmOgBmOjpmkJBmkLZmkNtmtrZmtttmtv+QOgCQOmaQZgCQZjqQkDqQkGaQkLaQtpCQttuQtv+Q29uQ2/+2ZgC2Zjq2Zma2ZpC2kDq2kGa225C227a229u22/+2/9u2///bkDrbkGbbtmbbtpDb27bb29vb////tmb/trb/25D/27b//7b//9v///9VaHqXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAZgklEQVR4nO2dC3vjxnlGKXdVpUrsONK6bWypcZ24Fd1rXDN2KlYr8f//qGIGGGBAAnPhgB+/oc55nqUgCDMA3zk7uAOrHYBiVudeAIAQCAqqQVBQDYKCahAUVIOgoBoEBdUgKKgGQUE1CAqqQVBQDYKCahAUVIOgoBoEBdUgKKgGQUE1CAqqQVBQDYKCahAUVIOgoBoEBdUgKKgGQUE1CAqqQVBQDYKCahAUVIOgoBoEBdUgKKhGqaCbleP6eff2w+1q9WX7OTP927//FK5wKP32aOrc7V7vVzfD39erzyI1TCzYzKwe5/92BNGv1jF8g3W/jP43DJXMm16UGgTdmp937ef05J++iuk1lK5M0PhX60BQSUYebFZXT7vuc5q4XkPpkwu6LKkLhqCibLxmsfldfW4/n5p1dfPjy1aOn5uRf/NNN0VT4C/N71e//XGo5pe/byb4x2dXh1V0LGgj7p++Wn32Y9O8/91M3Bb+5atm6i+e7HJc/Wszww9PUwvm/7XTo+moH9oZuIq9hfCnN3P/5fPV1Te7v9x21Q/fbFRv+9V2geUymy8fvh+b3CzEjVvGdjm84PwMx9O7YuZ77LpMPvw4U0aE2gRtGtbw4add/z//zrVi17sNJTd9XxcQtJ3C9SKm8LYdbLvtYfhgwfy/2hY1i3T97ATt+/++w/Wm777HavW5m6v3zbzpfEFnlquZ3/4XHwnazt2r3s9wf/ru+1nb195MpsqIoFZQx8NutIpfm87g5dZsTjbt9bvnT/dtlM2HMe559/OwodpM1gpyN7+Kb/56/ePuf01jND9/Niu5ZoK/fe7msbEdyGaoc2/B+r+2DdzUebfrBbUVjxein940+J2Z3+qb7o/eN/PnOnSMc8vV5HDzbDq4OUG7L9hX7w0eTN+MfnDZNJl81mUyWUaEygS1BnT/z9um2/z2z10rNvF9+LNfydrrDQKCPrTT2r87Hf76n5+vhj83Nd9ML9jw100/l17Qh8OF6Kdv5t5M1H7adve/mV/veM09tVxr1wHPCfqw2/nV+3M6mL792a4P1m6tMFNGhMoEbZrErXb8nWXbRu2qrt3aM7gJbMF5QdvxnQetYd+28+j/7O1PTSxY+1fT9bRV99ugT9MLYadvC/VF7/xvNqrXE3R6uZxa89ugZjm86v05TU1v/+9fP48ymSwjglpBx/siTtDtqg+qj3Tnovz0Vfunf2lHOq1sd+AdA1hPC9p7ZET/8Me/3s8IerBg7V/N4rSrwJGgEwsxLaj3zWYEnVkuN4ewoF71/pwOpzf/0br+0tvxmywjQmWCtptIloMetOHTd2afoxs904O6id2a+aAHbTV7zRTU/OWf3U7LcT3ow1S9g3czy+XmEO1BXfX+nA6nNwOb0fZOl8lhGREqE9Q/eNnmt/3i+/F68A/e8cCpbVC729CsiNejnSdve2vrtu/usgS1a0GjykjQiYWYFtT/ZtOCzi1XbBt01JOPByemNwU+d8r726BnOkSqVlBH365uL/7qm92n++4E05fmmI5bd9q9erOedx3r9F78aGXqC+r2WG2xT4+xbdCxcG0VtkHHgh4uxLSg/jfz6x0WfG652r349SooqF+9N3g4ffsf7W4vk8kyItQmaHc8rlsFuX2GrZ3wh/3NpNEhyGG0O7735W4kqJtdf1wxU9DtqlVkLOjhQswI6n2zPf0682aXyz+G6zgQ1Kvez/Bgejubtia/3qkyItQm6O7Tt7fuhE97Jun3u/Y0x4cf7e+rL/bPJP2+rdDL1k5nTkGNtkH7M0lv3za1fb85VHB6wdxf3c89QQ8WYkZQ75uNdr5+cOdyZpfr7T9um28T3gYdBednuD992yPvukz+59tAGRGUCgrnozsplnEZwClBUBjTbMR3XiIoqMNua3bnMxEU1NEIevW7bhhBAWIgKKgGQUE1CAqqQVBQDYKCahAUVIOgoBoEBdUgKKgGQUE1CAqqQVBQDYKCahAUVIOgoBoEBdUgKKgGQUE1eYK6ZwcouFcF3gdZgm7c/X5b+QeZwvskR9C3x17LjfgzeuB9kiPo633/CL4tK3kQgR4UVJO5Ddp1oWyDghB5e/Hu5Sn0nyAEx0FBNcsI2j80E99hWfKMMo9vtZuhm5m9eASFZcnbSbKvMbCvtEBQECH/MNPbo3nANYKCCMccqF9fPyMoyHDUgfr1DYKCDHnboJ2Wey+NOrY6gCi5e/HtSv7tEUFBhIWNQlBYFgQF1SAoqAZBQTUICqpBUFANgoJqEBRUg6CgGgQF1SAoqAZBQTUICqpBUFANgoJqEBRUg6CgGgQF1SAoqAZBQTUICqpBUFANgoJqJARdnZFlvx6IIyLosvPIAUFrB0FBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmrkBQ1ebPT2uJp52bd9i9hmlfmiegStnTMI+ncD+5NvrX/rq6fp2l/v8/RE0PpRJejLrX0Nk30b6BTuXYyFywMVoUrQTSfm/5m3hG1Xdn3+ev/1vXkHeCPny+3KvOFu0/3h43fmt36yh/bDTLTqPUbQ2tEk6NvjzfDL1kp50/xrVvibqycjX7sd2vz+cnvX/GJ0HiZrBbWd8LY3FEFrp21Bb925nXnJYU51wZHzgvqbmO2La7dGzDu77neCthM1S2kHvMlaQfcWH0FrxxO0a2wdgrabo52YZvmcoFu7B+X+MDHZaPkRtHY0Ceqv4lvzOjFHgnYHqHxBvcnaA1Vsg14MmgTtd5KabchID+qW+WAy+6fhOBWC1o4qQb3DTAcbl8M2aNc9+ss8bKoOf5pfHqiIMwgaOJNkD9S/PZoOcH/3fLQXb/rI1kI3WSv16sF2sFt60ItBXtAgr/f9qc69A5xD72mOgzYL2XWT3WS25NfdNupwJgpBa0eZoEuDoLXjBB3WuggKiuByO1ANgoJqXAuas9tmB2PuSrfM6uIjZUDQ2ulasL/Gwh1KLKsuYaQMCFo7XQuuzUnGtdk/Wt8Ep0+rLmGkDAhaO24v/s6dCj/ngfp1d5p9qpLh7NA2YzMEQWvHOw7aX8hWXF1w5OpXA/uC2kP0L7fhThxB3xOeoO3m52bmdouc6oIjo4LGDETQ94S3DWpPco+uaj+6utDIuKDtMnR3drQDN8NpzqvvhitIDk6I7t3xgaDV07WgvR7I6LEOrOG7bYDQ2aZFBLU/3Z0ddqCZs1VwbW9C8gSN3PGBoNXjWnBrr9F4uQ2t4K2gdhNg9vbKZQTddDd09Hd27Fz3aGa7HgSN3fGBoNWT04LGlU7NuS3VxQTt7+zwr/Fs9fN8jN3xgaDVkyto58vcvv5iq/j+zo6XXz91M38w4u4mBJ2/4wNBq0djD2p2kvpd9bwetK2G60EvhzxBV3aHOvAMmsUOM3l3duxvg26GGzxid3wgaPVktmDjaGPPdvYRXoVnkroD9aZ2d2eHHWj61P52D7MX727wiN3xgaDFrCYQnb//S9shLVZdcOQUo1OdG3c4a+I4aH+DR+SODwRdkPNkuYyg4f9cXCxyEdQs6HR1wZEyIOhyIOgJQNDl0C9owq11CHq5nFPQ/RMwM7w9xiZD0MvlvD2o6R3jkkavdULQy+X8q/gESbfTl7tPVhceKcOlCTp1VFLqO55fUEPiyj61uvmRMlyaoAPy30yHoKeoDkFPwHsUtOx2pIPqwiNlQNCa57g/VwStCAQtri48UgYErXmOo7lu2j3Ckzz65owUfRvNvDtBd6frQeEEIGhxdXBKELS4Okigoq2e8wuqr7rLx3/nSRbHFzx6UZf83ueaK4JmgqCyc0XQTBBUdq4ImgmCys4VQTNBUNm5ImgmCJo+19f71fXzuuyuJATNBEGT57q9etpcP88+MyS3OkgCQVPnam6YM09c2ix/wTLMk+nZ5JH39yGofXpcI+gJnlEP8xzdER5NrYK6HnS9/DPqYR4ETZ5ruw26idwVl1wdJIGg6XO1z2U4xfWgMA+Cys4VQTNBUNm5ImgmCJo+V7N7NP9o2uzqIAUETZ5ru/tuHle8SHWQBIKmztU92J3joKIgaOpc3aMXOZMkCoImz7U9Atq+wWCB6iAJBE2fq30PK8dBZUFQ2bkiaCYIKjtXBM0EQZPnat9y2cBOkiQImjzX0Jvij6gOkkDQ1LkWXkq/Xx2kgaCpc/XewLpEdZAGgqbONfoCj7zqIA0ETZ5r7AUemdVBEgiaOtf+NXLsxUuCoLJzRdBMEFR2rgiaCYImz9Wt41nFS4KgyXNdXz9vbnYvt9zVKQmCps7VHKjfmieLcF+8JAiaOldzoP7lNz/ZfwtUV1LHgs9VV88ZBJWnKCA3YK6of/34pEDQU9WmkjMI+qsjOb5gUUD9kLnXY32nahWPoAjq33Z8Y/bky65pQtBMEDQW0FJJn6I6BEVQCUHr2iqXBUFjAdnP/kR8w/IH6sWfIoygoXBqFNTQPvVmW3ZbJ4JmgqCxgNyAux70BHvxCDoPgsYCcgMnfPQNgs6DoLGA3IB79M0JHgG+wIsCMmso+AbCIGgsoH6ovaJ+o2kb9Og2KPkKsiBoLKBh0O7KF/WfCJoNgsYCWirpQHUIOg+CxgJaKulAdQg6D4LGAuqHTvfoGwSdB0FjAfVDp3v0DYLOg6CxgNxA0qNvor0sgmaCoLGA3EDKo2827h0gsy8DQdBMEDQWkBtIePSNO5a/mz8hiqCZIGgsoH4o/ugbr5OdOyGKoJkgaCwgN5Dw6Bt60OVB0FhAORP3r0JmG3QpEDQWUNbUrpudPSGKoJkgaCwgN3DCp9sh6DwIGgto7/fjLgcN3w2EoPMgaCyg/RHr5V8mi6DzIGgsoP0Rmq6oP7oNCr6BMAgaC2h/ROBlsgn3fiJoJggaC2jv9+D74t8eY90rgmaCoLGA3ED0CJIhej4UQTNB0FhAeZPHzociaCYIGgtoqaQD1SHoPAgaC2gY5Ka5M4CgsYD6IW47PgcIGgvIDeh5cMMCbVDwDYRB0FhAbkDjo2+OboOCbyAMgsYCcgMaHx52dBsUfANhEDQWUD+k8PGLR7dByVeQBUFjAdlPpQ+wPboNCr6BMAgaC2ippAPVIeg8CBoLaH/E2z/RgwqCoLGAxr9uVqziRUHQWEDe8LbZAi3bR0LQXBA0FpAbaPeTEh5/k1bdaKR4GxR+C0EQNBZQ+2PdyHmT9nymlOr2Roq3QeG3EARBYwHZz+40EoKKg6CxgNofW3rQ84CgsYD6oTXboGcAQWMBecNmP4m9eFkQNBbQ+NdmVc9xUEkQNBbQwZh/Q1BBEDQW0FJJB6pD0HnUCzr13j8ELW2D3KWeYIEwkmYtnc3xPejRIOhBGyy6+CcFQWMBLZV0oDoEDcxROhsEnRgp3gaLLv5JQdBYQPaTK+oDi39SEDQWUD/EPUkIqllQ7uqcW/yTgqCxgNwA98XPLf5JQdBYQG6AJ4vMLf5JQdBYQP0Qz2ZCUNWC8nQ7BNUt6BIgaO4cpbOpVlDvRZxLVDcaKd4Giy7+SUHQWEBuIOV98RnVjUaKt8Gii39SEDQWUD9UdnzpoDp/pHgbLLr4JwVBYwG5Ad7VObf4JwVBYwEtlXSgOgQNzFE6GwSdGCneBvIcHZh0Ngg6MbKaNpC/7QZBYwHZz9f7u4vaBj06SvE2QNBYQCWFE6tD0EBg0tkg6MTIatoAQU/BIoLaJ9eap9+UHa5H0NzApLOpVFDzlvi1uVLk5bbIUATNDUw6mzoFtSfiX27N2fiLuKL+6CjF2wBBYwHZT3sivn344kVcUX90lOJtgKCxgOwngnZRircBgsYCsp8I2kUp3gYIGgvIfiJoF6V4GyBoLCD7iaBdlOJtgKCxgOznpT1Z5OgoxdsAQWMBlRROrA5BA4FJZ4OgEyOraQMEPQUIulgbIOgpQNDF2gBBTwGClrbB1CXyQm2AoLGASgonVqde0DO2AYLGAuqH3h45zCTfBggaC6gfWl/QffH1tAGCxgJyA+Uvkh1VNxpJG8wHJp1NTeHYgNzART36pp42QNBYQG7APQK8DATNDUw6m5rCsQH1Q9vC25H2qvNH0gbzgUlnU1M4NiA3wH3xZ2kDBI0FVFI4sToEDQQmnU1N4diAMqbtLhgN9bIImgmCxgLqh9w6fn4VbwW1d33O7vIjaG7+0tnUFI4NqB9aXz9vboL3xRtBOzXnbk5G0Nz8pbOpKRwbkBsw9m0b7QL3xZtJOoH3bgwJP4YQQQP5S2dTUzg2IDdgusaX3/xk/81AD7p8GyBoLCA3YB4u8vrxKSyo6SNvdoHzogiam790NjWFYwPqh+zjme4ij75pHL166l6MHK7OH0kbzOcvnU1N4diAhsH1jfGv7JomBM0NTDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGNAw26/fr53XZVaEImhuYdDY1hWMD6oe2V0/NDlLhdcsImhuYdDY1hWMDcgPmMJPZg99wNZNkGyBoLCA3YI7AG0Hf9cPD5NsAQWMBuQHXg67f8yPA5dsAQWMB9UPtNuim7Lp6BM0NTDqbmsKxAQ2D9kzm1VNJbQiaHZh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODch+usfecNOcdBsgaCyg9sfrfeHG57i6vZG0wXxg0tnUFI4NyA00negCz75B0NzApLOpKRwbkDe8LrzWboeg+YFJZ1NTODag0W+bd/62Y/k2QNBYQHu/v9yykyTZBggaC8j/xezMc0W9aBsgaCygYdA8MqT0+WEImhuYdDY1hWMDcgPr9n7NQhA0NzDpbGoKxwbU/tiU78D71e2NpA3mA5POpqZwbED2kzNJ52oDBI0FVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAZUUTqwOQQOBSWdTUzg2oJLCidUhaCAw6WxqCscGVFI4sToEDQQmnU1N4diASgonVoeggcCks6kpHBtQSeHE6hA0EJh0NjWFYwMqKZxYHYIGApPOpqZwbEAlhROrQ9BAYNLZ1BSODaikcGJ1CBoITDqbmsKxAWVN7V7bPfvKbgTNBEFjAeVMvFndtQNbN5BUHYLOg6CxgDKmfXvstdxcP6dXh6DzIGgsoIxpX+8f3OB2vJJf9UzO4x1wZPzvIhtNPSjAsmRug3Zd6Ow2KMCy5HW/r/dtn03/CUIsfBwUYFkQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKCaCxDUPe5k9j4+73bp98Xb4439ue7uIXu5rS+IixDUNsN2NZc+giLoOemawbXGIQiKoOfEawarYvPx+vE784CzdbPif0BQm4xJ5L9u/+G22xTqo/n6fjW76tHA5QhqfvSC3ps+Y92M31w9Iaj9r9sk8nLbpPFye+dH03yYAbVcjqDmsSeDoE0jvH58atdqCGoEvdu1bu42n/3kRXOnfM1/EYK2e/FuZW4F7Z/Rs0LQfuOnNXHbdphDNKrzuQhBb0z2pi3Ggm5WZrMLQQdBf23UNJ+jaFTncymCts8zGwlq+4t3vYq3m5rtj3EPOo5GdT4XI+hubbf5200qG7l9hun2Pa/izebmbmdT6QS126DXz+NoVOdzOYKa/dS3R/NvNfSgr/erO90NcFJe700060bHLpHmP7HxchyN6nwuR1D7BH3zfMivvW3Qq6emY1XdAKfF7kCaQ26doOY46EE0qvO5AEHhkkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICioBkFBNQgKqkFQUA2CgmoQFFSDoKAaBAXVICio5v8BAfo1v/v3bYgAAAAASUVORK5CYII=" /><!-- --></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>treecolors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;steelblue4&quot;</span>,<span class="st">&quot;turquoise3&quot;</span>) <span class="co"># change colour scheme here</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>factorial.plot2 <span class="ot">&lt;-</span> <span class="fu">barplot</span>(factor.stat.box.matrix2,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">beside=</span><span class="cn">TRUE</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>),</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ylab=</span><span class="st">&quot;Mean Bird Abundance +/- SE&quot;</span>,</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">col=</span>treecolors,</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">space=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">5</span>),</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">main=</span><span class="st">&quot;Effects of Urban Environment and Tree Type&quot;</span>)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co"># error bars</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(factorial.plot2,factor.stat.box.matrix2<span class="sc">+</span>error1b,factorial.plot2,factor.stat.box.matrix2<span class="sc">-</span>error1b,<span class="at">code=</span><span class="dv">3</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">length=</span><span class="fl">0.1</span>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(.<span class="dv">5</span>,<span class="dv">18</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;Coniferous&quot;</span>,<span class="st">&quot;Deciduous&quot;</span>), <span class="at">fill=</span>treecolors)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- -->
+## Hill’s Numbers with vegan::renyi</p>
+<p>Create list of hills numbers for each replicate</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>hill.replicates <span class="ot">&lt;-</span> bird.dat <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(replicate) <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">renyi</span>(abundance,<span class="at">scales=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>),<span class="at">hill=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;replicate&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#write.csv(hill.replicates, &quot;hills.num.csv&quot;, row.names=FALSE)</span></span></code></pre></div>
+<p>Send to Excel to format</p>
+</div>
+</div>
+</div>
+<div id="rarefied-species-richness" class="section level2">
+<h2>Rarefied Species Richness</h2>
+<p>First we need to check what the smallest number of individuals was
+that we saw in any given replicate</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>bird.dat <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(replicate) <span class="sc">%&gt;%</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">individuals=</span><span class="fu">sum</span>(abundance)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(individuals)</span></code></pre></div>
+<pre><code>## # A tibble: 12 × 2
+##    replicate individuals
+##    &lt;chr&gt;           &lt;int&gt;
+##  1 LHP2                5
+##  2 MCR3                6
+##  3 LHP1                7
+##  4 LHP3                9
+##  5 CEL2               11
+##  6 CEL3               11
+##  7 MCR1               11
+##  8 CEL1               12
+##  9 LS2                13
+## 10 LS3                14
+## 11 LS1                15
+## 12 MCR2               18</code></pre>
+<p>n=5 is the smallest number of individuals in one replicate. This is
+our resampling number for rarefaction.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>replicates <span class="ot">&lt;-</span> <span class="fu">split</span>(bird.dat,bird.dat<span class="sc">$</span>replicate)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>rarefy.replicates <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">mode=</span><span class="st">&quot;integer&quot;</span>,<span class="at">length =</span> <span class="dv">12</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rarefy.replicates) <span class="ot">&lt;-</span> <span class="fu">names</span>(replicates)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rarefy all replicate subsets at n=5</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>) {</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  rarefy.replicates[i]<span class="ot">=</span><span class="fu">rarefy</span>(<span class="fu">as.vector</span>(replicates[[i]][[<span class="dv">6</span>]]),<span class="dv">5</span>)</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Warning in rarefy(as.vector(replicates[[i]][[6]]), 5): most observed count data
+## have counts 1, but smallest count is 11</code></pre>
+<pre><code>## Warning in rarefy(as.vector(replicates[[i]][[6]]), 5): most observed count data
+## have counts 1, but smallest count is 2</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.replicates)</span></code></pre></div>
+<pre><code>##     CEL1     CEL2     CEL3     LHP1     LHP2     LHP3 
+## 2.098485 2.333333 1.000000 2.428571 2.000000 2.111111</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.tibble</span>(rarefy.replicates)</span></code></pre></div>
+<pre><code>## Warning: `as.tibble()` was deprecated in tibble 2.0.0.
+## ℹ Please use `as_tibble()` instead.
+## ℹ The signature and semantics have changed, see `?as_tibble`.</code></pre>
+<pre><code>## # A tibble: 12 × 1
+##    value
+##    &lt;dbl&gt;
+##  1  2.10
+##  2  2.33
+##  3  1   
+##  4  2.43
+##  5  2   
+##  6  2.11
+##  7  3.67
+##  8  3.68
+##  9  3.50
+## 10  3.97
+## 11  2.81
+## 12  2</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write.csv(rarefy.replicates,&quot;rarefy.replicates.csv&quot;,row.names=TRUE)</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># organize in excel and then re-imported</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import joined table from Excel</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>replicates.diversity <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;bird.all.hills.csv&quot;</span>) </span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>replicates.diversity</span></code></pre></div>
+<pre><code>##    Site Replicate   habitat urban hill0 rarefyhill0    hill1    hill2
+## 1   CEL      CEL1   Conifer   low     3    2.098485 2.057442 1.674419
+## 2   CEL      CEL2   Conifer   low     3    2.333333 2.363083 2.050847
+## 3   CEL      CEL3   Conifer   low     1    1.000000 1.000000 1.000000
+## 4   LHP      LHP1 Deciduous   low     3    2.428571 2.217347 1.814815
+## 5   LHP      LHP2 Deciduous   low     2    2.000000 1.649385 1.470588
+## 6   LHP      LHP3 Deciduous   low     3    2.111111 1.981272 1.588235
+## 7    LS       LS1   Conifer  high     7    3.672328 5.551608 4.411765
+## 8    LS       LS2   Conifer  high     7    3.683761 5.432551 4.333333
+## 9    LS       LS3   Conifer  high     6    3.499500 4.826383 3.920000
+## 10  MCR      MCR1 Deciduous  high     6    3.969697 5.585609 5.260870
+## 11  MCR      MCR2 Deciduous  high     6    2.811275 3.564268 2.454545
+## 12  MCR      MCR3 Deciduous  high     2    2.000000 1.889882 1.800000</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>replicates.diversity.ln <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rarefyhill0.ln=</span><span class="fu">log</span>(rarefyhill0), <span class="at">.after=</span>rarefyhill0)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>replicates.diversity.ln</span></code></pre></div>
+<pre><code>##    Site Replicate   habitat urban hill0 rarefyhill0 rarefyhill0.ln    hill1
+## 1   CEL      CEL1   Conifer   low     3    2.098485      0.7412156 2.057442
+## 2   CEL      CEL2   Conifer   low     3    2.333333      0.8472979 2.363083
+## 3   CEL      CEL3   Conifer   low     1    1.000000      0.0000000 1.000000
+## 4   LHP      LHP1 Deciduous   low     3    2.428571      0.8873032 2.217347
+## 5   LHP      LHP2 Deciduous   low     2    2.000000      0.6931472 1.649385
+## 6   LHP      LHP3 Deciduous   low     3    2.111111      0.7472144 1.981272
+## 7    LS       LS1   Conifer  high     7    3.672328      1.3008257 5.551608
+## 8    LS       LS2   Conifer  high     7    3.683761      1.3039342 5.432551
+## 9    LS       LS3   Conifer  high     6    3.499500      1.2526202 4.826383
+## 10  MCR      MCR1 Deciduous  high     6    3.969697      1.3786898 5.585609
+## 11  MCR      MCR2 Deciduous  high     6    2.811275      1.0336379 3.564268
+## 12  MCR      MCR3 Deciduous  high     2    2.000000      0.6931472 1.889882
+##       hill2
+## 1  1.674419
+## 2  2.050847
+## 3  1.000000
+## 4  1.814815
+## 5  1.470588
+## 6  1.588235
+## 7  4.411765
+## 8  4.333333
+## 9  3.920000
+## 10 5.260870
+## 11 2.454545
+## 12 1.800000</code></pre>
+<div id="habitat-1" class="section level3">
+<h3>Habitat</h3>
+<div id="mean-rarefied-richness-and-error" class="section level4">
+<h4>Mean Rarefied Richness and Error</h4>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>rarefy.means.hab <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(habitat) <span class="sc">%&gt;%</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.rarefy=</span><span class="fu">mean</span>(rarefyhill0),</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(), <span class="at">sd=</span><span class="fu">sd</span>(rarefyhill0),</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.means.hab)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   habitat   mean.rarefy count    sd    se
+##   &lt;chr&gt;           &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Conifer          2.71     6 1.09  0.445
+## 2 Deciduous        2.55     6 0.761 0.311</code></pre>
+</div>
+<div id="statistics" class="section level4">
+<h4>Statistics</h4>
+<div id="test-for-homogeneity-of-variance-w-fligner-killeen-2" class="section level5">
+<h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  replicates.diversity$rarefyhill0 by replicates.diversity$habitat
+## Fligner-Killeen:med chi-squared = 3.4118, df = 1, p-value = 0.06473</code></pre>
+<p><strong>Variances are homogeneous, barely</strong></p>
+</div>
+<div id="test-for-normality-with-shapiro-wilk-2" class="section level5">
+<h5>Test for normality with Shapiro-Wilk</h5>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>diversity.con <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Conifer&quot;</span>)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>diversity.dec <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(habitat<span class="sc">==</span><span class="st">&quot;Deciduous&quot;</span>)</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.con<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  diversity.con$rarefyhill0
+## W = 0.8681, p-value = 0.2187</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.dec<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  diversity.dec$rarefyhill0
+## W = 0.80008, p-value = 0.05888</code></pre>
+<p><em>both greater than p&gt;0.05, barely</em></p>
+</div>
+<div id="t-test-2" class="section level5">
+<h5>T-test</h5>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>habitat, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  replicates.diversity$rarefyhill0 by replicates.diversity$habitat
+## t = 0.29693, df = 10, p-value = 0.7726
+## alternative hypothesis: true difference in means between group Conifer and group Deciduous is not equal to 0
+## 95 percent confidence interval:
+##  -1.047935  1.370186
+## sample estimates:
+##   mean in group Conifer mean in group Deciduous 
+##                2.714568                2.553442</code></pre>
+<p><strong>Difference is not significant. (t=0.29693, df= 10,
+p=0.7726</strong>)</p>
+</div>
+</div>
+</div>
+<div id="rural-vs.-urban" class="section level3">
+<h3>Rural vs. Urban</h3>
+<div id="mean-rarefied-richness-and-error-1" class="section level4">
+<h4>Mean Rarefied Richness and Error</h4>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>rarefy.means.urban <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(urban) <span class="sc">%&gt;%</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean.rarefy=</span><span class="fu">mean</span>(rarefyhill0),</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">count =</span> <span class="fu">n</span>(), <span class="at">sd=</span><span class="fu">sd</span>(rarefyhill0),</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">se=</span>sd<span class="sc">/</span><span class="fu">sqrt</span>(count))</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rarefy.means.urban)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
+##   urban mean.rarefy count    sd    se
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 high         3.27     6 0.735 0.300
+## 2 low          2.00     6 0.513 0.209</code></pre>
+</div>
+<div id="statistics-1" class="section level4">
+<h4>Statistics</h4>
+<div id="test-for-homogeneity-of-variance-w-fligner-killeen-3" class="section level5">
+<h5>Test for homogeneity of variance w/ Fligner Killeen</h5>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(replicates.diversity.ln<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban)</span></code></pre></div>
+<pre><code>## 
+##  Fligner-Killeen test of homogeneity of variances
+## 
+## data:  replicates.diversity.ln$rarefyhill0 by replicates.diversity$urban
+## Fligner-Killeen:med chi-squared = 0.48169, df = 1, p-value = 0.4877</code></pre>
+<p><strong>Variances are homogeneous</strong></p>
+</div>
+<div id="test-for-normality-with-shapiro-wilk-3" class="section level5">
+<h5>Test for normality with Shapiro-Wilk</h5>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>diversity.high <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;high&quot;</span>)</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>diversity.low <span class="ot">&lt;-</span> replicates.diversity <span class="sc">%&gt;%</span></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(urban<span class="sc">==</span><span class="st">&quot;low&quot;</span>)</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.high<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  diversity.high$rarefyhill0
+## W = 0.86363, p-value = 0.202</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  diversity.low$rarefyhill0
+## W = 0.77968, p-value = 0.03829</code></pre>
+<p><em>normality is violated for urban=low</em></p>
+</div>
+<div id="t-test-3" class="section level5">
+<h5>T-test</h5>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(replicates.diversity<span class="sc">$</span>rarefyhill0<span class="sc">~</span>replicates.diversity<span class="sc">$</span>urban, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  replicates.diversity$rarefyhill0 by replicates.diversity$urban
+## t = 3.4919, df = 10, p-value = 0.005804
+## alternative hypothesis: true difference in means between group high and group low is not equal to 0
+## 95 percent confidence interval:
+##  0.4623552 2.0926647
+## sample estimates:
+## mean in group high  mean in group low 
+##            3.27276            1.99525</code></pre>
+<p><strong>Result is significant (t = 3.4919, df = 10, p-value &lt;
+0.001) but normality is violated</strong></p>
+<p>What is the skew and kurtosis?</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## [1] -1.399386</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(diversity.low<span class="sc">$</span>rarefyhill0)</span></code></pre></div>
+<pre><code>## [1] 3.5638</code></pre>
+<p>This shows the reason that normality is violated. High skewness and
+kurtosis. Left skew does indicate we should be skeptical of the results
+of the t-test since this is in the direction of the other mean.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -566,20 +852,20 @@ interpretation of possible interaction effect</p>
 <div id="temporal-replicates" class="section level2">
 <h2>Temporal Replicates</h2>
 <p>Samples are not independent. Should we really have n=6 for each
-treatment or n=2?</p>
+treatment or n=2? <em>Answer</em> Rachel says no, all good. Not a
+“nested design” ## Standard Error on Bar Graphs Should we be using the
+standard error on the bar graphs, the code given in the presentation
+used the standard deviation. <em>Answer:</em> As long as it matches the
+axis title, it’s fine.</p>
 </div>
-<div id="standard-error-on-bar-graphs" class="section level2">
-<h2>Standard Error on Bar Graphs</h2>
-<p>Should we be using the standard error on the bar graphs, the code
-given in the presentation used the standard deviation.</p>
-</div>
-<div id="rarefied-species-richness" class="section level2">
+<div id="rarefied-species-richness-1" class="section level2">
 <h2>Rarefied Species Richness</h2>
 <p>What does it mean when say “ideally per replicate using the smallest
 sample”?</p>
 <ul>
 <li>does this mean take the smallest sample from all point counts in the
-experiment?</li>
+experiment? <em>Answer:</em> Yes, as long as n&gt;3 for all replicates.
+Our lowest one is n=6</li>
 </ul>
 </div>
 </div>
